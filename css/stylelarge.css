@@ -1,0 +1,443 @@
+
+@media screen and (max-width: 350.999px) and (min-width: 231px){
+
+p {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+em {
+  font-size: 1.5em !important;
+}
+
+b {
+  font-size: 1.3em !important;
+}
+
+strong {
+  font-size: 1.5em !important;
+}
+
+#company {
+  margin-left: 17% !important;
+}
+
+#topo {
+  margin-right: 5% !important;
+  margin-left: 5% !important;
+  min-height: 3.0em;
+}
+
+#homepage {
+  max-width: 113% !important;
+}
+
+#admpage {
+  max-width: 113% !important;
+}
+
+#collapsedtop {
+  min-height: 10em;
+}
+
+#apagar {
+  margin-right:-0.3em !important;
+  margin-left:-0.5em !important;
+}
+
+.companyjobs {
+  font-size: 1.5em;
+}
+
+.searchtext {
+  float: right;
+  clear: left;
+  width: 100%;
+  margin-right: 0%;
+  margin-top: -0.9em;
+}
+
+.twinTitle {
+  font-size: 1.5em !important;
+}
+
+.twinTitle::-moz-placeholder {
+  font-size: 0.7em !important;
+}
+
+.twinTitle::-webkit-input-placeholder {
+  font-size: 0.7em !important;
+}
+
+.twinTitle:-ms-input-placeholder {
+  font-size: 0.7em !important;
+}
+
+.twinTitle:-moz-input-placeholder {
+  font-size: 0.7em !important;
+}
+
+.twinContent {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinContent::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinContent::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinContent:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinContent:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinAuthor {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinAuthor::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinAuthor::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinAuthor:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinAuthor:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinPublicacao {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinPublicacao::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinPublicacao::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinPublicacao:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinPublicacao:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEditora {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinEditora::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEditora::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEditora:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEditora:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEdicao {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinEdicao::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEdicao::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEdicao:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinEdicao:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinCategoria {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinCategoria::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinCategoria::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinCategoria:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinCategoria:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinQuantidade {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinQuantidade::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinQuantidade::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinQuantidade:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinQuantidade:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinSerial {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.twinSerial::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinSerial::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinSerial:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.twinSerial:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.ordermotivo {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.ordermotivo::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.ordermotivo::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.ordermotivo:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.ordermotivo:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileName {
+  font-size: 2.5em !important;
+  margin-left: 0.1em;
+  width: 70% !important;
+}
+
+.profileName::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileName::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileName:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileName:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileBio {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+  width: 100% !important;
+}
+
+.profileBio::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileBio::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileBio:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileBio:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileEmail {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+  width: 100% !important;
+}
+
+.profileEmail::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileEmail::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileEmail:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileEmail:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileTel {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+  width: 100% !important;
+}
+
+.profileTel::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileTel::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileTel:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profileTel:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.profilefoto {
+  font-size: 1.5em !important;
+  width: 100% !important;
+}
+
+.recoveremail {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.recoveremail::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoveremail::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoveremail:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoveremail:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverserial {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.recoverserial::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverserial::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverserial:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverserial:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverpass {
+  font-size: 1.5em !important;
+  word-wrap: normal;
+  text-align: justify;
+}
+
+.recoverpass::-moz-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverpass::-webkit-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverpass:-ms-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+.recoverpass:-moz-input-placeholder {
+  font-size: 0.9em !important;
+}
+
+}
+
+/*# sourceMappingURL=style.css.map */
