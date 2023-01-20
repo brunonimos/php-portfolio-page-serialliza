@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!--
+<base href="https://serialliza.herokuapp.com">
+-->
+
+<title>SeriAlliza</title>
+
+<meta charset="UTF-8"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com https://use.fontawesome.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://stackpath.bootstrapcdn.com https://cdnjs.cloudflare.com; child-src 'self'; media-src 'self'; img-src * data:; object-src 'self'; frame-src *; font-src 'self' https://use.fontawesome.com;form-action 'self';"/>
+
+<meta name="Description" content="Here comes the Serialliza Apps."/>
+<meta name="Keywords" content="serialliza;tutoriais;portfolio;brunonimos"/>
+<link rel="canonical" href="https://serialliza.herokuapp.com"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+<link rel="stylesheet" href="css/frameworks/owl.carousel.css"></link>
+<link rel="stylesheet" href="css/frameworks/owl.theme.default.css"></link>
+<link rel="stylesheet" href="css/frameworks/normalize.css"></link>
+<link rel="stylesheet" href="css/frameworks/animate.css"></link>
+<link rel="stylesheet" href="css/frameworks/app.css"></link>
+<link rel="stylesheet" href="css/frameworks/remodal.css">
+<link rel="stylesheet" href="css/frameworks/remodal-default-theme.css">
+<link rel="stylesheet" href="css/frameworks/simpleStarRating.css">
+<link rel="stylesheet" href="css/frameworks/jquery-ui.min.css">
+<link rel="stylesheet" href="css/frameworks/jquery.timepicker.min.css">
+
+<script src="js/frameworks/angular.js"></script>
+<script src="js/frameworks/angular-filter.js"></script>
+<script src="js/frameworks/angular-sanitize.js"></script>
+<script src="js/frameworks/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/frameworks/owl.carousel.js"></script>
+<script src="js/frameworks/openseadragon.js"></script>
+<script src="js/frameworks/input-mask.js"></script>
+<script src="js/frameworks/remodal.js"></script>
+<script src="js/frameworks/latinize.js"></script>
+<script src="js/frameworks/simpleStarRating.js"></script>
+<script src="js/frameworks/jquery-ui.min.js"></script>
+<script src="js/frameworks/jquery.timepicker.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css"></link>
+<link rel="stylesheet" href="css/stylexxxxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexlarge.css"></link>
+<link rel="stylesheet" href="css/stylelarge.css"></link>
+<link rel="stylesheet" href="css/stylemedium.css"></link>
+<link rel="stylesheet" href="css/stylesmall.css"></link>
+
+<!--
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "Organization",
+"url": "https://brunonimos-test-shopify-app.herokuapp.com/",
+"name": "A Biblioteca do Centro Espírita Jésus Gonçalves",
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "+55-11-2557-6031",
+"contactType": "Customer service"
+}
+}
+</script>
+-->
+
+</head>
+<body id="main" style="height:100% !important;background-image: linear-gradient(to bottom,rgba(250,250,250,0.57),rgba(255,255,255,1.0) 100%)">
+
+<div class="container-fluid" ng-app="myApp" style="height:0em;margin-bottom: -10px;background: rgba(255,255,255,0.3)">
+
+<header id="collapsedtop">
+    
+<div class="remodal" data-remodal-id="tojoin" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+</div>
+
+<span id="top" style="position:absolute;z-index:100;width:100%">
+</span>
+
+<div id="rowholder">
+<div id="toponulled" class="centering row">
+<div id="login_bot" ng-controller="userCtrl" style="margin-top: 10px;clear: left;float: right" class="off">
+<form id="orderinfo">
+<input style="display: none" type="hidden" contenteditable="false" name="order" value={{user.ORDER}}>
+</form>
+<div class="dropdown">
+<button class="buttons" id="login" name="{{user.ID}}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+<div class="dropdown-menu pull-right" aria-labelledby="login" style="min-width: 0px !important;text-align: center;background-image: linear-gradient(to bottom,rgba(145,0,0,0.7),#617c58 300%);">
+<li id="profileditor" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./profile">Profile Editor</a></li>
+<li id="messagesviewer" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./messages"><b id="unreadcount"></b>Messages <div class="unreadalert badge badge-pill badge-danger" ng-if="user.UNREAD>0"<b>{{user.UNREAD}}</b></div></a></li>
+<div ng-if="user.ORDER==true">
+<li id="myorderslist" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./myorders">My Orders</a></li>
+<li id="mybillinglist" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./mybilling">Billing</a></li>
+</div>
+<li id="contact" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./contact">Contact</a></li>
+<div ng-repeat="tools in user.ADMTOOLS | limitTo:1 track by $index">
+<li id="seeallusers" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./allusers">Users management</a></li>
+<li id="seeallorders" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./orders">Orders management</a></li>
+<li id="seeallbilling" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./billing">Billing management</a></li>
+<li id="seesystem" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./system">System management</a></li>
+<li id="seeapinotifications" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./notifications">Apps Notifications</a></li>
+</div>
+<div ng-repeat="tools in user.GESTORTOOLS | limitTo:1 track by $index">
+<li id="seeallorders" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./orders">Orders management</a></li>
+<li id="seeallbilling" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./billing">Billing management</a></li>
+</div>
+<br>
+<form method="POST" id="saida">
+<button class="dropdown-item usermenu" type="submit" id="logout">Logout</button>
+</form>
+</div>
+</div>
+<br>
+<br>
+</div>
+
+<span id="login_div" style="text-align:center">
+<br>
+<form method="POST" id="acesso" style="margin-left: 5px; margin-top: 10px;">
+<input style="display:block;margin:0 auto;" placeholder="Login" type="text" id="send_login" pattern=".{1,30}" required title="Login" name="login">
+<br>
+<br>
+<input style="display:block;margin:0 auto;" placeholder="Password, do not use &" type="password" id="send_senha" pattern=".{6,30}" required title="Password" name="senha">
+<br>
+<br>
+<input name="enviar" style="display:block;margin:0 auto;" class="buttons" id="enviar" style="margin-top:0.7em" type="submit" value="Send"/>
+<label><a id="cadon" href="#" style="display:inline-block;text-decoration:none;color:rgba(0,0,0,1.0)">Sign Up</a></label>
+<br>
+<br>
+<br>
+<button id="recoveron" style="background-color:rgba(255,255,255,0.0);border:0;display:inline-block;text-decoration:none;color:rgba(0,0,0,1.0)" onclick="recoverbridge(this);">Forgot my password</button>
+<br>
+</form>
+
+<form method="POST" class="off" id="recoverer" style="margin-left: 5px; margin-top: 10px;">
+<input style="display:block;margin:0 auto;" placeholder="Email" type="text" id="recover_email" pattern=".{1,30}" required title="Email" name="recemail">
+<br>
+<br>
+<input style="display:block;margin:0 auto;" placeholder="New password, do not use &" type="password" id="recover_senha" pattern=".{6,30}" required title="Password" name="recsenha">
+<br>
+<br>
+<input style="display:block;margin:0 auto;" placeholder="Retype the new password" type="password" id="confirm_senha" pattern=".{6,30}" required title="Retype the password" name="recresenha">
+<br>
+<input name="enviar" style="display:block;margin:0 auto;" class="buttons" id="enviar" style="margin-top:0.7em" type="submit" value="Send"/>
+<br>
+<button id="acesson" style="background-color:rgba(255,255,255,0.0);border:0;display:inline-block;text-decoration:none;color:rgba(0,0,0,1.0)" onclick="recoverbridge(this);">Access</button>
+<br>
+</form>
+</span>
+
+<br>
+<button type="button" id="back" onclick="window.location.replace('./');" class="backbutton"><i class="fas fa-angle-left"></i></button>
+<button type="button" style="display:none;float:right;clear:left;margin-right:0.5em;" id="joinbutton" onclick="window.location.href='join#tojoin';" class="buttons">Access</button>
+<br>
+<br>
+</div>
+</div>
+
+<div id="logo">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<span id="backgroundContainer" style="display:none">
+<div id="backgroundtop" style="background-image: url(img/background.png);background-size: 100% 90%;background-repeat: no-repeat;">
+</div>
+<div>
+<img class="logo" id="logotipo" src="img/marca.png"/>
+</div>
+</span>
+<br>
+</div>
+
+</header>
+
+<div class="col-lg-12" id="precontent" style="height:2.0em;position:absolute;z-index:1;">
+<div id="msg" class="off">
+<div class="alert alert-info" role="alert">
+<label id="msgtext"></label>
+</div>
+</div>
+
+<div class="off" id="maininfo">
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<sup style="font-size:2.8em;font-family:serif">About Serialliza.</sup>
+<br><br><br><br><br><br>
+<h4 style="margin-top:-5.0em;margin-left:1.5em;margin-right:1.5em;text-align:justify;">
+Here comes the Serialliza Apps.
+</h4>
+<br><br><br><br><br>
+</div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<article style="display:none;margin-top:-12.5em;min-height:25em" id="contentContainer">
+
+<br>
+
+<div class="modelo" id="modelo" ng-controller="myCtrl">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<span class="centering_2" style="min-width:80%">
+<form method="POST" id="search">
+<input class="searchtext" placeholder="Search" pattern=".{1,30}" required title="Search" name="termo" id="termo" type="text">
+<input style="display: none" type="hidden" contenteditable="false" name="preparedtermo" value=""/>
+<input class="buttons" style="visibility: hidden;margin-top:0.0em;color:rgba(59,156,156,1.0);background-color:rgba(255,255,255,0.0)" type="submit" value="Buscar cursos"/>
+</form>
+</span>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+
+<div id="creation_div" style="margin-bottom:-10.0em;margin-right:1.5em;margin-left:0.5em" ng-if="contents.creatable=='1' || contents[0].editable=='1'">
+<span class="centering">
+<button class="buttonToggle createbutton" id="create" type="button" onclick="createbridge(this);" title="Criar novo conteudo"><i class="fas fa-plus"></i></button>
+</span>
+<div id="createSubdiv" style="display:none;width:100%;">
+<form id="creation" method="POST">
+<button class="buttonToggle createcommitbutton" id="createcommit" type="submit" name="criar"><i class="fas fa-check"></i></button>
+<input id="titleWrite" class="twinTitle" type="text" pattern=".{1,50}" required title="Título" placeholder="Título" name="title">
+<br>
+<br>
+<span id="creationImagePreview"></span>
+<textarea class="twinContent" placeholder="Descrição" id="contentWrite" form="creation" name="content" cols="163" rows="10" wrap="hard"></textarea>
+<div>
+<input id="categoria" class="twinCategoria" type="text" required title="Categoria" placeholder="Categoria" name="categoria">
+<br><br><br><br><br>
+</div>
+<label class="buttons" id="labelforattach" for="attach" style="display: none;max-width: 75%;float: left;clear: right;padding-left:0.7em;padding-right:0.7em;">Imagem</label>
+<input class="attach buttons" title="Imagem" type="file" required id="attach" style="display: none;max-width: 75%;float: left;clear: right;margin-left:0.5em" multiple accept="image/png,image/jpeg,image/jpg" name="attach[]"/>
+<br><br><br><br>
+<div style="display:none">
+<label>Videos (Coloque ponto e virgula ";" no final de todos os videos)</label><br><input id="video" class="twinCategoria" type="url" title="Video" placeholder="Video" name="videos">
+</div>
+<br><br>
+<div class="off">
+<label>Data de inicio</label><input class="twinCategoria" type="text" title="Inicio" placeholder="Começa em: " style="display:none" name="inicio">
+<br><br>
+<label>Data de fim</label><input class="twinCategoria" type="text" title="Fim" placeholder="Termina em: " style="display:none" name="fim">
+<br><br>
+<label>Dias da semana</label>
+<div class="weekDays-selector">
+<input type="checkbox" id="domingo" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="domingo">Dom</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartdomingo">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourenddomingo">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="segunda" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="segunda">Seg</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartsegunda">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendsegunda">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="terca" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="terca">Ter</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartterca">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendterca">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="quarta" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="quarta">Qua</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartquarta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendquarta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="quinta" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="quinta">Qui</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartquinta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendquinta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="sexta" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="sexta">Sex</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartsexta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendsexta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="sabado" class="weekday" name="weekdays[]" onchange='creatingweekdayhourchanger(this);'/>
+<label for="sabado">Sab</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " name="hourstartsabado">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " name="hourendsabado">
+</div>
+
+<br><br><br>
+<input type="hidden" style="display:none" name="hourstart">
+<input type="hidden" style="display:none" name="hourend">
+<br>
+<label>Valor do curso
+<input class="twinCategoria" type="text" title="Preço" placeholder="Preço": style="display:none" name="valor" id="valor">
+</label>
+<br>
+<label>Multa de rescisão %
+<input class="twinCategoria" type="number" min="0" max="100" step="0.1" title="Multa" placeholder="Multa": " style="display:none" name="multa" id="multa">
+</label>
+<br>
+<label>Parcelas
+<select size="1" name="parcelas" class="twinCategoria" style="display:none">
+<option selected value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="12">12</option>
+</select>
+</label>
+<br><br>
+<label>Carga horaria
+<input class="twinCategoria" type="text" title="Carga Horaria" placeholder="Carga Horaria": style="display:none" name="carga">
+</label>
+</div>
+<br><br><br><br>
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+<div ng-if="contents[0].loaded=='contents'">
+<div style="height:100%;margin-top:3.0em;" ng-repeat="categoria in contents | unique: 'categoria'">
+<br>
+<section class="categoriatext" id="categoriatext" ng-if="categoria.categoria!==''">
+<a href="./{{categoria.categoria | replaceSpacesforSearchEngine}}SearchDo" class="seeall"><em style="float:right;clear:left;margin-right:1.0em">See All</em></a>
+<strong id="categoriaSection" style="color:black">{{categoria.categoria}}</strong>
+</section>
+<div class="owl-carousel" id="books" style="display: block !important;height:100%;margin-left:-0.5em">
+
+<div id="content_div" ng-repeat="content in contents | filterBy: ['categoria']:categoria.categoria | limitTo:10">
+
+<div id="edit-{{content.serial}}" style="display:none;width: 100%;" ng-repeat="editable in content.editable track by $index">
+<button class="buttonToggle delbutton" name="deleteMedia" onclick="deletebridge(this);" type="submit"><i class="fas fa-trash-alt"></i></button>
+<form method="POST" class="apagar">
+<input style="display: none" type="hidden" name="deltitle" value="{{content.titulo}}">
+<input style="display: none" type="hidden" name="serial" value="{{content.serial}}">
+<input style="display: none" type="hidden" name="action" value="contentdeleter">
+<input style="display: none" type="hidden" name="medianame">
+<br>
+<br>
+<button class="buttonToggle delallbutton" name="deleteall" type="submit" title="Deletar Conteudo"><i class="far fa-trash-alt"></i></button>
+</form>
+<button class="buttonToggle editbutton" name="editar" onclick="alterbridge(this);" type="submit"><i class="fas fa-pencil-alt"></i></button>
+<form method="POST" class="editar">
+<input style="display: none" type="hidden" contenteditable="false" name="oldtitle" value="{{content.titulo}}"/>
+<input style="display: none" type="hidden" contenteditable="false" name="olddescricao" value="{{content.descricao}}"/>
+<input style="display: none" type="hidden" contenteditable="false" name="serial" value="{{content.serial}}"/>
+<div id="formheader">
+<button class="buttonToggle altcommitbutton" id="altcommit" type="submit" title="Alterar" name="commit"><i class="fas fa-check"></i></button>
+<input type="hidden" placeholder="Título" pattern=".{1,50}" required title="Título" class="twinTitle" name="newtitle" value="{{content.titulo}}"/>
+<div style="margin-left: 1.0em !important" id="{{content.titulo}}imagesPreview"></div>
+</div>
+<textarea class="twinContent" placeholder="Descrição" style="display: none;" name="newcontent" required cols="163" rows="10" wrap="hard">{{content.descricao}}</textarea>
+<input class="twinCategoria" type="text" title="Categoria" placeholder="Categoria" required value="{{content.categoria}}" style="display: none;" name="newcategoria">
+<br><br><br>
+<label class="buttons" id="{{content.titulo}}labelforfiles" for="files" style="display: none;max-width: 90%;float: left;clear: right;padding-left:0.7em;padding-right:0.7em;">Multimídia</label>
+<input class="files buttons" type="file" style="max-width: 75%;display: none;float: left;clear: right;margin-left:0.5em;margin-top:0.5em;" multiple accept="image/png,image/jpeg,image/jpg" name="files[]"/>
+<br><br><br><br>
+<div style="display:none">
+<label>Coloque ponto e virgula ";" no final de todos os videos</label><br><input id="{{content.serial}}video" class="twinCategoria" type="url" title="Videos" placeholder="Links dos videos" name="newvideos">
+</div>
+<br><br>
+<div class="off">
+<label>Data de inicio</label><input class="twinCategoria" type="text" title="Inicio" placeholder="Começa em: " value="{{content.inicio}}" style="display:none" name="newinicio">
+<br><br>
+<label>Data de fim</label><input class="twinCategoria" type="text" title="Fim" placeholder="Termina em: " value="{{content.fim}}" style="display:none" name="newfim">
+<br><br>
+<label>Dias da semana</label>
+<div class="weekDays-selector">
+<input type="checkbox" id="domingo" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.domingo.checkbox=='checked'"/>
+<label for="domingo">Dom</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.domingo.domingostart}}" name="newhourstartdomingo">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.domingo.domingoend}}" name="newhourenddomingo">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="segunda" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.segunda.checkbox=='checked'"/>
+<label for="segunda">Seg</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.segunda.segundastart}}" name="newhourstartsegunda">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.segunda.segundaend}}" name="newhourendsegunda">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="terca" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.terca.checkbox=='checked'"/>
+<label for="terca">Ter</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.terca.tercastart}}" name="newhourstartterca">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.terca.tercaend}}" name="newhourendterca">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="quarta" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.quarta.checkbox=='checked'"/>
+<label for="quarta">Qua</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.quarta.quartastart}}" name="newhourstartquarta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.quarta.quartaend}}" name="newhourendquarta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="quinta" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.quinta.checkbox=='checked'"/>
+<label for="quinta">Qui</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.quinta.quintastart}}" name="newhourstartquinta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.quinta.quintaend}}" name="newhourendquinta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="sexta" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.sexta.checkbox=='checked'"/>
+<label for="sexta">Sex</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.sexta.sextastart}}" name="newhourstartsexta">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.sexta.sextaend}}" name="newhourendsexta">
+</div>
+<div class="weekDays-selector">
+<input type="checkbox" id="sabado" class="weekday" name="newweekdays[]" onchange='weekdayhourchanger(this);' ng-checked="content.sabado.checkbox=='checked'"/>
+<label for="sabado">Sab</label>
+</div>
+<div id="hour" class="off">
+<label>Horario de entrada</label><br><input class="twinCategoria" type="text" title="Das" placeholder="Das: " value="{{content.sabado.sabadostart}}" name="newhourstartsabado">
+<br>
+<label>Horario de saida</label><br><input class="twinCategoria" type="text" title="As" placeholder="As: " value="{{content.sabado.sabadoend}}" name="newhourendsabado">
+</div>
+
+<br><br><br>
+<input type="hidden" style="display:none" name="newhourstart">
+<input type="hidden" style="display:none" name="newhourend">
+<br>
+<label>Valor do curso
+<input class="twinCategoria" type="text" title="Preço" placeholder="Preço": " ng-value="{{content.valor}}" style="display:none" name="newvalor" id="newvalor">
+</label>
+<br>
+<label>Multa de rescisão %
+<input class="twinCategoria" type="number" min="0" max="100" step="0.1" title="Multa" placeholder="Multa": " ng-value="{{content.multa}}" style="display:none" name="newmulta" id="newmulta">
+</label>
+<br>
+<label>Parcelas
+<select size="1" name="newparcelas" class="twinCategoria" style="display:none">
+<option ng-selected="content.parcelas=='1'" value="1">1</option>
+<option ng-selected="content.parcelas=='2'" value="2">2</option>
+<option ng-selected="content.parcelas=='3'" value="3">3</option>
+<option ng-selected="content.parcelas=='4'" value="4">4</option>
+<option ng-selected="content.parcelas=='5'" value="5">5</option>
+<option ng-selected="content.parcelas=='6'" value="6">6</option>
+<option ng-selected="content.parcelas=='12'"value="12">12</option>
+</select>
+</label>
+<br><br>
+<label>Carga horaria
+<input class="twinCategoria" type="text" title="Carga Horaria" placeholder="Carga Horaria": ng-value="{{content.carga}}" " style="display:none" name="newcarga">
+</label>
+</div>
+</form>
+</div>
+
+<div id="description_div">
+
+<div id="{{content.titulo}}descriptionHeader">
+<br>
+<br>
+
+<div class="textlimiter">
+<a style="color:inherit;text-decoration:none;" href="{{content.serial}}">
+<strong id="{{content.titulo}}-title" style="margin-left:0.3em;">{{content.titulo}}</strong>
+</a>
+</div>
+<br>
+</div>
+
+<div id="{{content.titulo}}descriptionMedia">
+<div id="{{content.titulo}}descriptionCarousel">
+<span id="media-{{content.serial}}">
+<div class="owl-carousel" id="media" style="display: block !important">
+<div ng-repeat="image in content.image track by $index">
+<figure style="display: inline-block" class="{{image.subject}}square" id="{{content.titulo}}/{{image.name}}">
+
+<figcaption class="{{content.serial}}" id="{{$index}}" style="display: none;margin-left: -8%;position: absolute;max-width: 15em;font-size: 1.0em;">{{image.name}}</figcaption>
+<img onclick="imgshowbridge(this);" alt="{{image.name}}" class="{{image.subject}}Media" ng-src="{{image.link}}">
+</figure>
+
+<span ng-if="image.editable=='1'">
+<form method="POST" class="apagarImagem">
+<input style="display: none" type="hidden" name="deltitle" value="{{content.titulo}}">
+<input style="display: none" type="hidden" name="serial" value="{{content.serial}}">
+<input style="display: none" type="hidden" name="medianame" value="{{image.name}}">
+<input style="display: none" type="hidden" name="mediasubject" value="{{image.subject}}">
+<input style="display: none" type="hidden" name="action" value="multimidiadeleter">
+<button class="buttonToggle delbutton" onclick="deletebridge(this);" style="display: block" type="button" name="imageDelete">X</button>
+</form>
+</span>
+
+</div>
+<div ng-repeat="video in content.video track by $index">
+<iframe style="margin-top:1.0em;margin-left:0.4em" width="305" height="240" ng-src="{{video.link | trusted}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+</span>
+<br>
+</div>
+
+<div id="{{content.serial}}-imgView" style="background-color: black;max-width: 90%;max-height: 90%;width: 800px; height: 500px;z-index:3!important;" class="viewOff">
+</div>
+
+</div>
+
+<div id="descriptionBody-{{content.serial}}" style="display:none">
+<button  id="showdescript" onclick="descriptbridge(this);" style="opacity:0.5;color:black;background-color: rgba(255,255,255,0.0);border-color: rgba(255,255,255,0.0);display: inline-block;float: right;clear: left;margin-left:1.0em;margin-top:-1.0em;outline: none;"><i class="fas fa-caret-down"></i></button>
+<div id="description" style="display:none">
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub id="descriptionText-{{content.serial}}" class="twinContent">{{content.descricao}}</sub>
+</li>
+</span>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinCategoria">Category: {{content.categoria}}</sub>
+</li>
+</span>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinCategoria">Published in: {{content.date}}</sub>
+</li>
+</span>
+
+<div ng-if="content.categoria=='app' || content.categoria=='App' || content.categoria=='apps' || content.categoria=='Apps'">
+<figure style="display: inline-block">
+<a href="{{content.externalReference}}" style="display:inline-block;text-decoration:none"><img alt="Apple Store" src="img/appleLogo.jpeg"/></a>
+</figure>
+<br>
+</div>
+
+<div ng-if="content.categoria=='curso' || content.categoria=='Curso' || content.categoria=='cursos' || content.categoria=='Cursos'">
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinAuthor">Inicio: {{content.inicio}}</sub>
+</li>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinAuthor">Fim: {{content.fim}}</sub>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.domingo.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Domingos das {{content.domingo.domingostart}} até {{content.domingo.domingoend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.segunda.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Segundas das {{content.segunda.segundastart}} até {{content.segunda.segundaend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.terca.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Tercas das {{content.terca.tercastart}} até {{content.terca.tercaend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.quarta.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Quartas das {{content.quarta.quartastart}} até {{content.quarta.quartaend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.quinta.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Quintas das {{content.quinta.quintastart}} até {{content.quinta.quintaend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.sexta.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Sextas das {{content.sexta.sextastart}} até {{content.sexta.sextaend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block" ng-if="content.sabado.checkbox=='checked'">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;">
+<sub class="twinAuthor" style="word-break: break-all;font-size:1.0em;">Sabados das {{content.sabado.sabadostart}} até {{content.sabado.sabadoend}}.</sub>
+</span>
+</li>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinAuthor">Valor do curso: R${{content.valor}}, no boleto, parcelas em até {{content.parcelas}}x</sub>
+</li>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinAuthor">Carga horária: {{content.carga}}</sub>
+</li>
+<br>
+<li style="display: inline-block">
+<span style="margin-left:0.5em;word-break: break-all;word-spacing:0.1em;"><sub class="twinAuthor">Multa rescisória: {{content.multa}}%</sub>
+</li>
+<br>
+
+</div>
+
+</span>
+<br>
+<span id="bookRating-{{content.serial}}" class="rating" data-stars="5" data-default-rating="{{content.score}}">
+</span>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+
+<span class="centering" ng-if="content.orderable=='1'">
+<form method="POST" id="getbook-{{content.serial}}" style="display:none">
+<div class="remodal-bg">
+<button id="buttonToggle-{{content.titulo | removeSpaces}}" name="{{content.titulo | removeSpaces}}" type="button" class="aluguel" onclick="window.location.href='#modal-'+this.name+'';getbookbridge(this);"><label>Inscrever-se</label></button>
+</div>
+<input style="display:none" type="hidden" contenteditable="false" name="gettitle" value="{{content.titulo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="getserial" value="{{content.serial}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="getautor" value="{{content.autor}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="getdate" value="{{date | date:'dd-MM-yyyy'}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="orderscreator"/>
+<input style="display: none" type="hidden" contenteditable="false" name="parcelas"/>
+<input style="display: none" type="hidden" contenteditable="false" name="vencimento"/>
+<div class="remodal" data-remodal-id="modal-{{content.titulo | removeSpaces}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div>
+<h2 id="modal1Title" class="twinTitle">Caro cliente, </h2>
+<sup id="modal1Desc" class="twinContent">
+Ao se inscrever no curso "{{content.titulo}}" você estará ciente das informações divulgadas neste site.
+</sup>
+
+<br>
+<br>
+<sup id="modal1Desc" class="twinContent">
+Pagamento por boleto, escolha o numero de parcelas que deseja.
+</sup>
+<br>
+<select size="1" name="setparcelas" id="setparcelas" class="twinCategoria">
+<option ng-if="content.parcelas>=1" value="1">1x de {{content.valor | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=2" value="2">2x de {{content.valor / 2 | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=3" value="3">3x de {{content.valor / 3 | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=4" value="4">4x de {{content.valor / 4 | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=5" value="5">5x de {{content.valor / 5 | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=6" value="6">6x de {{content.valor / 6 | currency:"R$"}}</option>
+<option ng-if="content.parcelas>=12" value="12">12x de {{content.valor / 12 | currency:"R$"}}</option>
+</select>
+
+<br>
+<br>
+<br>
+<sup id="modal1Desc" class="twinContent">
+Escolha o dia de vencimento do(s) boleto(s).
+</sup>
+<br>
+<select size="1" name="setvencimento" id="setvencimento" class="twinCategoria">
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="25">25</option>
+</select>
+
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Cancelar</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Concluir</button>
+</div>
+</form>
+</span>
+
+</div>
+
+<br>
+<br>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</span>
+
+<div id="alladms" ng-if="alladms[0].loaded=='alladms'">
+
+<div ng-repeat="adm in alladms track by $index">
+<img class="profileImg" id="profileImg" src="{{adm.FOTO}}"/>
+<b>{{adm.NOME}}</b>
+<br>
+<sup>{{adm.BIO}}</sup>
+</div
+    
+</div>
+
+</div>
+
+<div id="morecorpinfo" ng-if="info[0].loaded=='info'">
+
+<div ng-repeat="info in info track by $index">
+<p>{{info.titulo}}</p>
+<br><br><br><br><br><br><br><br>
+<h3 style="margin-top:-5.0em;margin-left:1.5em;margin-right:1.5em;text-align:justify;">
+{{info.details}}
+</h3>
+</div>
+
+</div>
+
+<div id="privacyinfo" ng-if="privacy[0].loaded=='info'">
+
+<div ng-repeat="privacy in privacy track by $index">
+<p>Terms of use and privacy {{privacy.subject}}.</p>
+<br><br><br><br><br><br><br><br>
+<h3 style="margin-top:-5.0em;margin-left:1.5em;margin-right:1.5em;text-align:justify;">
+{{privacy.privacy}}
+</h3>
+</div>
+    
+</div>
+
+<span style="display:none" id="contentEnd">
+<form id="cad">
+<div id="condContainer" style="display:block;margin:0 auto;">
+<input style="display:block;margin:0 auto;" placeholder="E-mail" type="email" id="send_email" pattern=".{1,40}" required title="Email" name="email">
+<input id="conditions" required autofocus type="checkbox" name="conditions" style="margin-left:-0.2em;margin-top:0.0em;">
+<input style="display:block;margin:0 auto;" placeholder="User Name" id="send_nome" pattern=".{1,100}" required title="Name" name="nome">
+<br>
+<label id="conditionstext" style="display:block;margin:0 auto;color: whitesmoke;"><a style="color:whitesmoke" href="./privacy">I agree to the terms of use and privacy..</a></label>
+<br>
+<br>
+</div>
+</form>
+<form method="POST" id="recoversend">
+<input style="display:none" type="hidden" contenteditable="false" name="rectoken"/>
+</form>
+</span>
+
+<br>
+<br>
+
+<div class="app centering" style="display:block;">
+<div id="pageload" class="blink centering">
+<b class="event listening">Loading</b>
+</div>
+</div>
+
+</article>
+
+<br>
+<br>
+<br>
+<br>
+
+<footer id="footer" style="bottom: 0;position: relative;">
+
+<div id="corpinfo" style="width: 100%;float:left;clear:right;display:none">
+<div id="company" class="centering_2" style="text-align: center;margin-top:3.0em !important;margin-left: 1.0em !important;">
+<sup><a href="./privacy" class="companyjobs" style="display:inline-block;text-decoration:none">Terms of use and privacy</a></sup>
+<br>
+<sup>Developed by Bruno Henrique Ferreira de Oliveira, Copyright 2019.</sup>
+<br>
+<a href="https://github.com/brunonimos" class="companyicons" style="display:inline-block;text-decoration:none"><i class="companyicons fab fa-github"></i></a>
+<!--
+<a href="https://br.linkedin.com/in/brunonimos" class="companyicons" style="display:inline-block;text-decoration:none"><i class="companyicons fab fa-linkedin"></i></a>
+<a href="https://www.instagram.com/brunonimos_works/" class="companyicons" style="display:inline-block;text-decoration:none"><i class="fab fa-instagram"></i></a>
+<a href="https://www.youtube.com/channel/UCst81omPyq4uae3Sm2bJvlw" class="companyicons" style="display:inline-block;text-decoration:none"><i class="fab fa-youtube"></i></a>
+<button onclick="alert('mail\@mail.com');" class="companyicons" style="display:inline-block;background: rgba(255,255,255,0.0);border:0em"><i class="companyicons fas fa-envelope"></i></button>
+-->
+</div>
+<br>
+<br>
+</div>
+
+<!--
+<div class="centering">
+<b style="text-align: center">Copyright 2019 Bruno Henrique Ferreira de Oliveira.</b>
+<em style="font-size:0.5em !important;text-align: center">Copyright material available on this website is licensed under the MIT License. To view a copy of this licence, visit https://opensource.org/licenses/MIT’</em><br><br>
+</div>
+-->
+
+</footer>
+
+</div>
+
+<script async src="js/filter.js"></script>
+<script src="js/sessao.js"></script>
+<script src="js/join.js"></script>
+<script src="js/recover.js"></script>
+<script src="js/loginout.js"></script>
+<script src="js/image.js"></script>
+<script async src="js/create.js"></script>
+<script async src="js/alter.js"></script>
+<script async src="js/getbook.js"></script>
+<script async src="js/delete.js"></script>
+<script async src="js/description.js"></script>
+
+
+</body>
+</html>

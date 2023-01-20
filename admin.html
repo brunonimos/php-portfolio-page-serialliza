@@ -1,0 +1,1142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<title></title>
+
+<meta charset="UTF-8"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com https://use.fontawesome.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://stackpath.bootstrapcdn.com https://cdnjs.cloudflare.com; child-src 'self'; media-src 'self'; img-src * data:; object-src 'self'; frame-src *; font-src 'self' https://use.fontawesome.com;form-action 'self';"/>
+
+<!--
+<meta name="Description" content="Área administrativa da biblioteca do Centro Espírita Evangélico Jesus Gonçalves CEEJG."/>
+<meta name="Keywords" content="CEEJG;bibliotecajg;administrar;"/>
+-->
+<!--
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+-->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+<link rel="stylesheet" href="css/frameworks/normalize.css"></link>
+<link rel="stylesheet" href="css/frameworks/animate.css"></link>
+<link rel="stylesheet" href="css/frameworks/app.css"></link>
+<link rel="stylesheet" href="css/frameworks/remodal.css">
+<link rel="stylesheet" href="css/frameworks/remodal-default-theme.css">
+
+<script src="js/frameworks/angular.js"></script>
+<script src="js/frameworks/angular-filter.js"></script>
+<script src="js/frameworks/angular-sanitize.js"></script>
+<script src="js/frameworks/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/frameworks/input-mask.js"></script>
+<script src="js/frameworks/remodal.js"></script>
+<script src="js/frameworks/alasql.min.js"></script>
+<script src="js/frameworks/xlsx.core.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css"></link>
+<link rel="stylesheet" href="css/stylexxxxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexxlarge.css"></link>
+<link rel="stylesheet" href="css/stylexlarge.css"></link>
+<link rel="stylesheet" href="css/stylelarge.css"></link>
+<link rel="stylesheet" href="css/stylemedium.css"></link>
+<link rel="stylesheet" href="css/stylesmall.css"></link>
+
+</head>
+
+<body id="main" style="height:100% !important;background-image: linear-gradient(to bottom,rgba(250,250,250,0.57),rgba(255,255,255,1.0) 100%)">
+
+<div class="container-fluid" ng-app="myApp" style="height:0em;margin-bottom:-10px;background:rgba(255,255,255,0.3)">
+
+<header id="collapsedtop">
+
+<span id="top" style="position:absolute;z-index:100;width:100%">
+</span>
+
+<div id="rowholder">
+<div id="toponulled" class="centering row">
+<div id="login_bot" ng-controller="userCtrl" style="margin-top: 10px;clear: left;float: right" class="off">
+<form id="orderinfo">
+<input style="display: none" type="hidden" contenteditable="false" name="order" value={{user.ORDER}}>
+</form>
+<div class="dropdown">
+<button class="buttons" id="login" name="{{user.ID}}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+<div class="dropdown-menu pull-right" aria-labelledby="login" style="min-width: 0px !important;text-align: center;background-image: linear-gradient(to bottom,rgba(145,0,0,0.7),#617c58 300%);">
+<li id="profileditor" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./profile">Profile Editor</a></li>
+<li id="messagesviewer" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./messages"><b id="unreadcount"></b>Messages <div class="unreadalert badge badge-pill badge-danger" ng-if="user.UNREAD>0"<b>{{user.UNREAD}}</b></div></a></li>
+<div ng-if="user.ORDER==true">
+<li id="myorderslist" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./myorders">My orders</a></li>
+<li id="mybillinglist" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./mybilling">My billing</a></li>
+</div>
+<li id="seecontact" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./contact">Contact</a></li>
+<div ng-repeat="tools in user.ADMTOOLS | limitTo:1 track by $index">
+<li id="seeallusers" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./allusers">Users management</a></li>
+<li id="seeallorders" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./orders">Orders management</a></li>
+<li id="seeallbilling" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./billing">Billing management</a></li>
+<li id="seebanking" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./banking">Banking management</a></li>
+<li id="seesystem" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./system">System management</a></li>
+<li id="seeapinotifications" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./notifications">Apps Notifications</a></li>
+</div>
+<div ng-repeat="tools in user.GESTORTOOLS | limitTo:1 track by $index">
+<li id="seeallorders" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./orders">Orders management</a></li>
+<li id="seeallbilling" class="dropdown-item usermenu"><a style="text-decoration:none;color: black;" href="./billing">Billing management</a></li>
+</div>
+<br>
+<form method="POST" id="saida">
+<button class="dropdown-item usermenu" type="submit" id="logout">Logout</button>
+</form>
+</div>
+</div>
+<br>
+<br>
+</div>
+<span id="login_div" style="text-align:center" style="display:none">
+<form method="POST" id="acesso" style="margin-left: 5px; margin-top: 10px;">
+<input style="display:block;margin:0 auto;" placeholder="Login" type="text" id="send_login" pattern=".{1,30}" required title="Login" name="login">
+<br>
+<br>
+<input style="display:block;margin:0 auto;" placeholder="Senha" type="password" id="send_senha" pattern=".{6,30}" required title="Senha" name="senha">
+<br>
+<br>
+<input name="enviar" style="display:block;margin:0 auto;" class="buttons" id="enviar" style="margin-top:0.7em" type="submit" value="Enviar"/>
+<label><a id="cadon" href="#" style="display:inline-block;text-decoration:none;color:whitesmoke">Cadastrar-se</a></label>
+<br>
+<br>
+<br>
+<br>
+</form>
+</span>
+<br>
+<button type="button" id="back" onclick="window.location.replace('./');" class="backbutton"><i class="fas fa-angle-left"></i></button>
+<br>
+</div>
+</div>
+
+<div id="logo" style="margin-left:-0.5em">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<span id="backgroundContainer" style="display:none">
+<div id="backgroundtop" style="background-image: url(img/background.png);background-size: 100% 90%;background-repeat: no-repeat;">
+</div>
+<div>
+<img class="logo" id="logotipo" src="img/marca.png"/>
+</div>
+</span>
+<br>
+</div>
+
+</header>
+
+<div class="col-lg-12" id="precontent" style="height:2.0em;position:absolute;z-index:1;">
+<div id="msg" class="off">
+<div class="alert alert-info" role="alert">
+<label id="msgtext"></label>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<article style="margin-left:2.0em;margin-right:-0.9em;display:none;margin-top:-12.5em;" id="contentContainer">
+<br>
+<br>
+<br>
+<br>
+
+<div class="modelo col-lg-12" style="padding-left: 0.0em" id="admpage" ng-controller="myCtrl">
+<br>
+
+<div id="profile" style="position:relative;z-index:2;" class="off" ng-if="profile[0].loaded=='profile'">
+<form method="POST">
+<div>
+<img class="profileImg" id="profileImg" src="{{profile[0].FOTO}}"/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input name="foto" type="file" class="profilefoto buttons" accept="image/png,image/jpeg" value="{{profile[0].FOTO}}"/>
+
+</div>
+<br>
+<button class="buttonToggle profilecommitbutton" id="profilecommit" type="submit" name="profilecommit"><i class="fas fa-check"></i></button>
+<br>
+<br>
+<br>
+<div style="display:block">
+<label>Nome</label>
+<br>
+<input name="nome" class="profileName" placeholder="Nome" pattern=".{1,100}" required title="Nome" value="{{profile[0].NOME}}"/>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="display:none">
+<label>CPF</label>
+<br>
+<input disabled name="cpf" id="cpf" class="profileEmail" placeholder="CPF" pattern=".{1,14}" required title="CPF" value="{{profile[0].CPF}}"/>
+</div>
+<br>
+<br>
+<div style="display:none">
+<label>RG</label>
+<br>
+<input disabled name="rg" class="profileEmail" placeholder="RG" pattern=".{1,30}" required title="RG" value="{{profile[0].RG}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>E-mail</label>
+<br>
+<input disabled name="email" type="email" class="profileEmail" placeholder="E-mail" pattern=".{1,50}" required title="E-mail" value="{{profile[0].EMAIL}}"/>
+</div>
+<br>
+<br>
+<div style="display:none">
+<label>Telefone</label>
+<br>
+<input disabled name="telefone" id="telefone" class="profileTel" placeholder="Telefone" title="Telefone" value="{{profile[0].TEL}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Escreva sobre você</label>
+<br>
+<textarea name="bio" id="bio" class="profileBio" placeholder="Escreva sobre você" title="Escreva sobre você"/>{{profile[0].BIO}}</textarea>
+</div>
+<br>
+<br>
+
+<div style="display:none">
+<label>Endereço</label>
+<br><br>
+<select disabled size="1" name="logradouro" class="twinCategoria">
+<option ng-selected="profile[0].LOG=='Rua'" value="Rua">Rua
+<option ng-selected="profile[0].LOG=='Av.'" value="Av.">Avenida
+<option ng-selected="profile[0].LOG=='Est.'" value="Est.">Estrada
+<option ng-selected="profile[0].LOG=='Pca.'" value="Pca.">Praça
+<option ng-selected="profile[0].LOG=='Tr.'" value="Tr.">Travessa
+<option ng-selected="profile[0].LOG=='Rod.'" value="Rod.">Rodovia
+<option ng-selected="profile[0].LOG=='Quadra'" value="Quadra">Quadra
+<option ng-selected="profile[0].LOG=='Lote'" value="Lote">Lote
+</select>
+<input disabled class="twinCategoria" placeholder="Logradouro" name="endereco" id="endereco" type="text" value="{{profile[0].END}}" size="40"><br><br>
+<input disabled maxlength="6" class="twinCategoria" placeholder="Nº" name="numero" id="numero" type="text" value="{{profile[0].NUMERO}}" size="7" pattern=".{1,6}" title="No mínimo 1 Caracter numérico">
+<input disabled class="twinCategoria" placeholder="Complemento" name="complemento" id="complemento" type="text" value="{{profile[0].COMP}}" size="27">
+<input disabled class="twinCategoria" placeholder="CEP" name="cep" id="cep" type="text" value="{{profile[0].CEP}}" size="9" pattern=".{9,9}" title="8 Caracteres numéricos"><br><br>
+<input disabled class="twinCategoria" placeholder="Bairro" name="bairro" id="bairro" type="text" value="{{profile[0].BAIRRO}}" size="15">
+<input disabled class="twinCategoria" placeholder="Cidade" name="cidade" id="cidade" type="text" value="{{profile[0].CIDADE}}" size="15">
+<select disabled size="1" name="estado" class="twinCategoria">
+<option ng-selected="profile[0].ESTADO=='AC'" value="AC">AC
+<option ng-selected="profile[0].ESTADO=='AL'" value="AL">AL
+<option ng-selected="profile[0].ESTADO=='AP'" value="AP">AP
+<option ng-selected="profile[0].ESTADO=='AM'" value="AM">AM
+<option ng-selected="profile[0].ESTADO=='BA'" value="BA">BA
+<option ng-selected="profile[0].ESTADO=='CE'" value="CE">CE
+<option ng-selected="profile[0].ESTADO=='DF'" value="DF">DF
+<option ng-selected="profile[0].ESTADO=='ES'" value="ES">ES
+<option ng-selected="profile[0].ESTADO=='GO'" value="GO">GO
+<option ng-selected="profile[0].ESTADO=='MA'" value="MA">MA
+<option ng-selected="profile[0].ESTADO=='MT'" value="MT">MT
+<option ng-selected="profile[0].ESTADO=='MS'" value="MS">MS
+<option ng-selected="profile[0].ESTADO=='MG'" value="MG">MG
+<option ng-selected="profile[0].ESTADO=='PA'" value="PA">PA
+<option ng-selected="profile[0].ESTADO=='PB'" value="PB">PB
+<option ng-selected="profile[0].ESTADO=='PR'" value="PR">PR
+<option ng-selected="profile[0].ESTADO=='PE'" value="PE">PE
+<option ng-selected="profile[0].ESTADO=='PI'" value="PI">PI
+<option ng-selected="profile[0].ESTADO=='RJ'" value="PI">RJ
+<option ng-selected="profile[0].ESTADO=='RN'" value="RN">RN
+<option ng-selected="profile[0].ESTADO=='RS'" value="RS">RS
+<option ng-selected="profile[0].ESTADO=='RO'" value="RO">RO
+<option ng-selected="profile[0].ESTADO=='RR'" value="RR">RR
+<option ng-selected="profile[0].ESTADO=='SC'" value="SC">SC
+<option ng-selected="profile[0].ESTADO=='SP'" value="SP">SP
+<option ng-selected="profile[0].ESTADO=='SE'" value="SE">SE
+<option ng-selected="profile[0].ESTADO=='TO'" value="TO">TO
+</select> 
+</div>
+
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="profileditor"/>
+<input style="display:none" type="hidden" contenteditable="false" name="defaultfoto" value="{{profile[0].FOTO}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="fulladdress"/>
+</form>
+</div>
+
+<div id="allusers" style="position:relative;z-index:2;" class="off" ng-if="allusers[0].loaded=='allusers'">
+<br><br><br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="userfilter" placeholder="Filtrar clientes" required title="Filtar clientes" name="userfilter" id="userfilter" type="text">
+</div>
+<br>
+<div ng-repeat="allusers in (viewData=(allusers | filterBy: ['NOME','CPF','RG','EMAIL']: userfilter)) track by $index" style="height:100%;width:90%;margin-left:0.5em;margin-top:1.5em">
+<div class="allusers" style="margin-right:0.3em;float:left;clear:both;width:100%;border:groove">
+<img style="margin-top:0.9em;height:7em;width:6em" src="{{allusers.FOTO}}">
+<strong style="margin-left:0.1em">Nome: {{allusers.NOME}}</strong><br>
+<b style="margin-left:0.1em">CPF: {{allusers.CPF}}</b><br>
+<b style="margin-left:0.1em">RG: {{allusers.RG}}</b><br>
+<b style="margin-left:0.1em">E-mail: {{allusers.EMAIL}}</b><br>
+<b style="margin-left:0.1em">Endereço: {{allusers.END}}</b><br>
+
+<div ng-if="allusers.TIPO=='usuario'">
+<div class="remodal-bg">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" class="buttons" id="tojointeam-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:1.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Contratar"/>
+<input type="button" class="buttons" id="tosuspend-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:6.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Suspender"/>
+</div>
+</div>
+
+<div ng-if="allusers.TIPO=='gestor'">
+<div class="remodal-bg">
+<input type="button" class="buttons" id="toleaveteam-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:1.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Demitir"/>
+<input type="button" class="buttons" id="tosuspend-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:6.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Suspender"/>
+</div>
+</div>
+
+<div ng-if="allusers.TIPO=='newuser'">
+<div class="remodal-bg">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" class="buttons" id="tosuspend-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:1.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Suspender"/>
+</div>
+</div>
+
+<div ng-if="allusers.TIPO=='suspended'">
+<div class="remodal-bg">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" class="buttons" id="toreactivate-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:1.0em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Reativar"/>
+<input type="button" class="buttons" id="tocancelaccount-{{allusers.LOGIN}}" onclick="window.location.href='#'+this.id+'';accountcommiter(this);" style="margin-top:-4.0em;margin-right:6.5em;margin-bottom:0.5em;float:right;clear:left;display:block" name="acconuntcommit" value="Cancelar"/>
+</div>
+</div>
+
+<div class="remodal" data-remodal-id="tojointeam-{{allusers.LOGIN}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="jointeam">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja tornar gestor o cliente {{allusers.NOME}}? Informe abaixo o motivo.
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="accountlogin" value="{{allusers.LOGIN}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountemail" value="{{allusers.EMAIL}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountsituacao" value="gestor"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="accountjointeam"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Sair</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Confirmar</button>
+</div>
+
+<div class="remodal" data-remodal-id="toleaveteam-{{allusers.LOGIN}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="leaveteam">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja retirar as habilidades de gestor do cliente {{allusers.NOME}}? Informe abaixo o motivo.
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="accountlogin" value="{{allusers.LOGIN}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountemail" value="{{allusers.EMAIL}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountsituacao" value="usuario"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="accountleaveteam"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Sair</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Confirmar</button>
+</div>
+
+<div class="remodal" data-remodal-id="tosuspend-{{allusers.LOGIN}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="suspend">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja suspender o acesso ao cliente {{allusers.NOME}}? Informe abaixo o motivo.
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="accountlogin" value="{{allusers.LOGIN}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountemail" value="{{allusers.EMAIL}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountsituacao" value="suspended"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="accountsuspend"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Sair</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Confirmar</button>
+</div>
+
+<div class="remodal" data-remodal-id="toreactivate-{{allusers.LOGIN}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="reactivate">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja reativar o acesso ao cliente {{allusers.NOME}}? Informe abaixo o motivo
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="accountlogin" value="{{allusers.LOGIN}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountemail" value="{{allusers.EMAIL}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountsituacao" value="newuser"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="accountreactivate"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Sair</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Confirmar</button>
+</div>
+
+<div class="remodal" data-remodal-id="tocancelaccount-{{allusers.LOGIN}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="cancelaccount">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja cancelar definitivamento o acesso ao cliente {{allusers.NOME}}? Confirmando, todos os registros como mensagens, contas, pedidos e dados do cliente serão apagados
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="accountlogin" value="{{allusers.LOGIN}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountemail" value="{{allusers.EMAIL}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="accountsituacao" value="canceled"/>
+<input style="display:none" type="hidden" contenteditable="false" name="motivo" value="Cancelado pelo administrador." required />
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="accountcancel"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Sair</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Confirmar</button>
+</div>
+
+</div>
+
+</div>
+<br><br><br>
+</div>
+
+<div id="orders" style="position:relative;z-index:2;" class="off" ng-if="orders[0].loaded=='orders'">
+
+<select size="1" name="selectstatus" id="selectstatus" class="twinCategoria" ng-model="selectstatus">
+<option value="" disabled selected>Filtrar</option>
+<option value="Aguardando">Aguardando</option>
+<option value="Aprovado">Aprovado</option>
+<option value="Reprovado">Reprovado</option>
+<option value="Cancelado">Cancelado</option>
+<option value="Finalizado">Finalizado</option>
+</select>
+
+<br>
+<button class="buttons excelgenbutton" ng-click="excelgen(viewData)">Gerar planilha</button>
+<br>
+<br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="orderfilter" placeholder="Filtrar pedidos" required title="Filtar pedidos" name="orderfilter" id="orderfilter" type="text">
+</div>
+
+<br>
+
+<div class="order" ng-repeat="orders in (viewData=(orders | filterBy: ['situacao']: selectstatus | filterBy: ['numero','titulo','consultor','nome','cpf','rg','email','situacao','motivo']: orderfilter)) track by $index" style="margin-left:0.5em;margin-top:1.5em;border: groove">
+
+<div style="margin-right:0.3em;float:left;clear:both;">
+<h4>Pedido {{orders.numero}}</h4>
+<h6 style="max-width:9.0em;word-break: break-all">{{orders.titulo}}</h6>
+<h6 style="margin-left:0.1em">CPF: {{orders.cpf}}</<h6>
+</div>
+
+<div style="display:none">
+<strong style="margin-left:0.1em">Nome: {{orders.nome}}</strong>
+<br>
+<strong style="margin-left:0.1em">RG: {{orders.rg}}</strong>
+<br>
+<sub style="word-break: break-all;font-size:1.0em;">{{orders.email}}</sub>
+<br>
+<sub style="word-break: break-all;font-size:1.0em;">{{orders.telefone}}</sub>
+<br>
+<br>
+</div>
+
+<div style="display:none">
+<sub style="word-break: break-all;font-size:1.0em;">Inicio em: {{orders.startdate}}. Termina em: {{orders.enddate}}</sub>
+<br>
+<span ng-if="orders.domingo.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Domingos das {{orders.domingo.domingostart}} até {{orders.domingo.domingoend}}.</sub>
+</span>
+<span ng-if="orders.segunda.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Segundas das {{orders.segunda.segundastart}} até {{orders.segunda.segundaend}}.</sub>
+</span>
+<span ng-if="orders.terca.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Tercas das {{orders.terca.tercastart}} até {{orders.terca.tercaend}}.</sub>
+</span>
+<span ng-if="orders.quarta.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Quartas das {{orders.quarta.quartastart}} até {{orders.quarta.quartaend}}.</sub>
+</span>
+<span ng-if="orders.quinta.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Quintas das {{orders.quinta.quintastart}} até {{orders.quinta.quintaend}}.</sub>
+</span>
+<span ng-if="orders.sexta.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Sextas das {{orders.sexta.sextastart}} até {{orders.sexta.sextaend}}.</sub>
+</span>
+<span ng-if="orders.sabado.checkbox=='checked'">
+<sub style="word-break: break-all;font-size:1.0em;">Sabados das {{orders.sabado.sabadostart}} até {{orders.sabado.sabadoend}}.</sub>
+</span>
+</div>
+<div style="margin-right:0.5em">
+<h4>Status</h4>
+<sub style="word-break: break-all;font-size:1.0em;">{{orders.feedback}}</sub>
+<br>
+<b>{{orders.situacao}}</b>
+<br>
+<br>
+
+<div ng-if="orders.situacao=='Aguardando'">
+<div class="remodal-bg">
+<h5>{{orders.motivo}}</h5>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" class="buttons" id="toapprove-{{orders.numero}}" onclick="window.location.href='#'+this.id+'';orderscommiter(this);" style="margin-top:-4.0em;margin-right:7.0em;margin-bottom:0.5em;float:right;clear:left" name="ordercommit" value="Aprovar"/>
+</div>
+<div class="remodal-bg">
+<input type="button" class="buttons" id="torepprove-{{orders.numero}}" onclick="window.location.href='#'+this.id+'';orderscommiter(this);" style="margin-top:-4.0em;margin-right:0.2em;margin-bottom:0.5em;float:right;clear:left" name="ordercancel" value="Reprovar"/>
+</div>
+</div>
+
+<div ng-if="orders.situacao=='Aprovado'">
+<div class="remodal-bg">
+<b>{{orders.motivo}}</b>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" id="togiveback-{{orders.numero}}" class="buttons" onclick="window.location.href='#'+this.id+'';postorder(this);" style="margin-top:-4.0em;margin-right:7.0em;margin-bottom:0.5em;float:right;clear:left" name="postordergiveback" value="Finalizar"/>
+</div>
+<div class="remodal-bg">
+<input type="button" id="tocancel-{{orders.numero}}" class="buttons" onclick="window.location.href='#'+this.id+'';postorder(this);" style="margin-top:-4.0em;margin-right:0.2em;margin-bottom:0.5em;float:right;clear:left" name="postordergiveback" value="Cancelar"/>
+</div>
+</div>
+
+<div ng-if="orders.situacao=='Reprovado'">
+<div class="remodal-bg">
+<b>{{orders.motivo}}</b>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="button" class="buttons" id="toapprove-{{orders.numero}}" onclick="window.location.href='#'+this.id+'';orderscommiter(this);" style="margin-top:-4.0em;margin-right:7.0em;margin-bottom:0.5em;float:right;clear:left" name="ordercommit" value="Aprovar"/>
+</div>
+<div class="remodal-bg">
+<input type="button" id="tocancel-{{orders.numero}}" class="buttons" onclick="window.location.href='#'+this.id+'';postorder(this);" style="margin-top:-4.0em;margin-right:0.2em;margin-bottom:0.5em;float:right;clear:left" name="postordergiveback" value="Cancelar"/>
+</div>
+</div>
+
+<div ng-if="orders.situacao=='Finalizado'">
+<b>{{orders.motivo}}</b>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+<div class="remodal" data-remodal-id="toapprove-{{orders.numero}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="approve">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja aprovar o Pedido Nº {{orders.numero}}?
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="pedido" value="{{orders.numero}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="title" value="{{orders.titulo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="serial" value="{{orders.serial}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="situacao" value="Aprovado"/>
+<input style="display:none" type="hidden" contenteditable="false" name="motivo" value="Aprovado desde"/>
+<input style="display:none" type="hidden" contenteditable="false" name="cpf" value="{{orders.cpf}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="email" value="{{orders.email}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="ordersvalidator"/>
+</form>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Cancelar</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Aprovar</button>
+</div>
+
+<div class="remodal" data-remodal-id="torepprove-{{orders.numero}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="reprove">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+Tem certeza que deseja reprovar o Pedido Nº {{orders.numero}}? Informe abaixo o motivo:
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="pedido" value="{{orders.numero}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="title" value="{{orders.titulo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="serial" value="{{orders.serial}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="situacao" value="Reprovado"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="cpf" value="{{orders.cpf}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="email" value="{{orders.email}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="ordersvalidator"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Cancelar</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Reprovar</button>
+</div>
+
+<div class="remodal" data-remodal-id="togiveback-{{orders.numero}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="finalize">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+O cliente {{orders.nome}} encerrou o curso {{orders.titulo}}, pedido Nº {{orders.numero}}?
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="pedido" value="{{orders.numero}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="title" value="{{orders.titulo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="serial" value="{{orders.serial}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="situacao" value="Finalizado"/>
+<input style="display:none" type="hidden" contenteditable="false" name="motivo" value="Finalizou o curso"/>
+<input style="display:none" type="hidden" contenteditable="false" name="cpf" value="{{orders.cpf}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="email" value="{{orders.email}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="orderscancel"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Não</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Sim</button>
+</div>
+
+<div class="remodal" data-remodal-id="tocancel-{{orders.numero}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+<div id="cancele">
+<form method="POST">
+<h2 id="modal1Title" class="twinTitle">Caro administrador, </h2>
+<sup id="modal1Desc" class="twinContent">
+O cliente {{orders.nome}} cancelou o curso {{orders.titulo}}, pedido Nº {{orders.numero}}? Ao cancelar, todos os registros do pedido e de contas serão apagados. Multa de rescisão de {{orders.multa}}% ou seja, R$ {{orders.rescisao}}. Informe abaixo o motivo:
+</sup>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="pedido" value="{{orders.numero}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="title" value="{{orders.titulo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="serial" value="{{orders.serial}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="situacao" value="Cancelado"/>
+<input name="motivo" class="ordermotivo" type="text" title="Motivo" placeholder="Motivo" required />
+<input style="display:none" type="hidden" contenteditable="false" name="cpf" value="{{orders.cpf}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="email" value="{{orders.email}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="orderscancel"/>
+</form>
+</div>
+<br>
+<button style="position:relative;z-index:1;background-color:rgba(155,0,0,0.7)" data-remodal-action="cancel" class="btn btn-danger button-cancel">Não</button>
+<button style="background-color:rgba(0,155,0,0.7)" data-remodal-action="confirm" class="btn btn-success button-confirm">Sim</button>
+</div>
+
+<br>
+<br>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="billing" style="position:relative;z-index:2;" class="off" ng-if="billing[0].loaded=='billing'">
+
+<select size="1" name="billingselector" id="billingselector" ng-model="billingselector" class="twinCategoria">
+<option ng-repeat="billing in billing | unique: 'pedido'" ng-selected="{{billing.pedido}}" value="{{billing.pedido}}">Pedido {{billing.pedido}}</option>
+</select>
+
+<br>
+<br>
+<br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="billingfilter" placeholder="Filtrar contas" required title="Filtar contas" name="billingfilter" id="billingfilter" type="text">
+</div>
+<br>
+<div class="billing" ng-repeat="billing in (viewData=(billing | filterBy: ['pedido']: billingselector | filterBy: ['id','pedido','serial','vencimento','valor','nome','cpf','endereco','demonstrativo','status']: billingfilter)) track by $index" style="margin-left:0.5em;margin-top:1.5em;border:groove;min-height:15em">
+<div style="margin-right:0.3em;float:left;clear:both;width:100%">
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{billing.id}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="demonstrativo" required value="{{billing.demonstrativo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="billingloader"/>
+<button class="buttonToggle" style="background:rgba(255,255,255,0.0);border:0;float:right;clear:left" type="button" onclick="billingbridge(this);" name="billingview" id="billingview-{{billing.id}}" title="Ver boleto"><i class="fas fa-binoculars"></i></button>
+</form>
+<h4>{{billing.demonstrativo}} <h5 style="margin-right:1.1em;margin-top:-0.5em;float:right;clear:both;">Número: {{billing.id}}</h5><h5 class="{{billing.status|lowercase}}" style="margin-right:1.1em;margin-top:0.5em;float:right;clear:both;">{{billing.status}}</h5></h4>
+<h5 style="margin-left:0.1em">Vencimento: {{billing.vencimento}}</h5>
+<h5 style="margin-left:0.1em">Valor: R$ {{billing.valor}}</h5>
+<h6 style="margin-left:0.1em">Nome: {{billing.nome}}</h6>
+<h6 style="margin-left:0.1em">CPF: {{billing.cpf}}</<h6>
+<h6 style="margin-left:0.1em">Endereço: {{billing.endereco}}</h6>
+<h6 style="margin-left:0.1em">E-mail: {{billing.email}}</h6>
+</div>
+
+</div>
+
+</div>
+
+<div id="banking" style="position:relative;z-index:2;" class="off" ng-if="banking[0].loaded=='banking'">
+
+<div class="centering">
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="all"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="remessadownloader"/>
+<button class="buttons" type="button" onclick="bankingbridge(this);" name="downloadall" id="banking-downloadall" title="Baixar Remessas">Baixar Remessas</button>
+</form>
+</div>
+<br>
+<div class="centering">
+<form method="POST">
+<button style="display:none;background-color:rgba(255,255,255,0.0);border:0;" class="buttonToggle" onclick="bankingbridge(this);" id="retcommit" type="button" title="Enviar retorno" name="retcommit"><i class="fas fa-check"></i></button>
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{banking.id}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="retornouploader"/>
+<label class="buttons" id="banking-upret-label" for="retornos" style="max-width: 100%;float: left;clear: right;padding-left:0.4em;padding-right:0.4em;padding-top:0.2em;padding-bottom:0.2em;">Enviar Retornos</label>
+<input class="files buttons" type="file" id="banking-upret" title="Enviar Retornos" style="max-width: 100%;float: left;clear: right;margin-left:0.5em;margin-top:0em;" multiple accept=".ret" name="retornos[]"/>
+</form>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="billingfilter" placeholder="Filtrar remessas" required title="Filtar remessas" name="bankingfilter" id="bankingfilter" type="text">
+</div>
+<br>
+<div class="banking" ng-repeat="banking in (viewData=(banking | filterBy: ['remessa','retorno']: bankingfilter)) track by $index" style="margin-left:0.5em;margin-top:1.5em;border:groove;min-height:5em">
+
+<div>
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{banking.id}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="remessadownloader"/>
+<button class="buttonToggle" style="background-color:rgba(255,255,255,0.1);border:0;margin-right:1.1em;margin-top:0.5em;float:right;clear:both;" type="button" onclick="bankingbridge(this);" name="download" id="banking-download" title="Baixar Remessa"><i class="fas fa-download"></i></button>
+</form>
+</div>
+
+<div>
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{banking.id}}"/>
+<div ng-if="banking.status=='Pendente'">
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="paychecker"/>
+</div>
+<div ng-if="banking.status=='Baixado'">
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="payunchecker"/>
+</div>
+<button class="buttons" style="margin-right:1.1em;margin-top:0.5em;float:right;clear:both;" type="button" onclick="bankingbridge(this);" name="pay" id="banking-pay" title="Pagamento"><span ng-if="banking.status=='Baixado'">Descompensar Pagamento</span><span ng-if="banking.status=='Pendente'">Compensar Pagamento</span></button>
+</form>
+</div>
+
+<h5>Numero: {{banking.id}}</h5>
+<h6 class="{{banking.status|lowercase}}" style="margin-right:1.1em;margin-top:0.5em;float:right;clear:both;">{{banking.status}}</h6>
+<h6>Remessa: {{banking.remessa}}</h6>
+<h6>Retorno: {{banking.retorno}}</h6>
+</div>
+
+</div>
+
+<div id="myorders" style="position:relative;z-index:2;" class="off" ng-if="myorders[0].loaded=='myorders'">
+
+<div id="myorders-orders" class="off">
+
+<select size="1" name="selectstatus" id="selectstatus" class="twinCategoria" ng-model="selectstatus">
+<option value="" disabled selected>Filtrar</option>
+<option value="Aguardando">Aguardando</option>
+<option value="Aprovado">Aprovado</option>
+<option value="Reprovado">Reprovado</option>
+<option value="Finalizado">Finalizado</option>
+</select>
+
+<br>
+<br>
+<br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="orderfilter" placeholder="Filtrar pedidos" required title="Filtrar meus pedidos" name="myorderfilter" id="myorderfilter" type="text">
+</div>
+<br>
+<div class="order" id="myorderdiv" ng-repeat="myorders in myorders | filterBy: ['situacao']: selectstatus | filterBy: ['numero','serial','titulo','consultor','nome','email','situacao','motivo']: myorderfilter track by $index" style="margin-left:0.5em;margin-top:1.5em;border: groove">
+<div style="margin-right:0.3em;float:left;clear:both;">
+<h4>Pedido {{myorders.numero}}</h4>
+<h6 style="max-width:9.0em;word-break: break-all">{{myorders.titulo}}</h6>
+<h6 style="max-width:9.0em;word-break: break-all">{{myorders.consultor}}</h6>
+</div>
+<div style="margin-right:0.5em">
+<h4>Status</h4>
+<sub style="word-break: break-all;font-size:1.0em;">{{myorders.feedback}}</sub>
+<br>
+<b>{{myorders.situacao}}</b>
+<br>
+<br>
+
+<div ng-if="myorders.situacao=='Aguardando'">
+<sup style="font-size:0.8em;">{{myorders.motivo}}</sup>
+</div>
+
+<div ng-if="myorders.situacao=='Aprovado'">
+<sup style="font-size:0.8em;">{{myorders.motivo}}</sup>
+</div>
+
+<div ng-if="myorders.situacao=='Reprovado'">
+<sup style="font-size:0.8em;">{{myorders.motivo}}</sup>
+</div>
+
+<div ng-if="myorders.situacao=='Finalizado'">
+<sup style="font-size:0.8em;">{{myorders.motivo}}</sup>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="mybilling" style="position:relative;z-index:2;" class="off" ng-if="mybilling[0].loaded=='mybilling'">
+
+<select size="1" name="mybillingselector" id="mybillingselector" ng-model="mybillingselector" class="twinCategoria">
+<option ng-repeat="mybilling in mybilling | unique: 'pedido'" ng-selected="{{mybilling.pedido}}" value="{{mybilling.pedido}}">Pedido {{mybilling.pedido}}</option>
+</select>
+
+<br>
+<br>
+<br>
+
+<div class="centering_2" style="margin-left:0.5em">
+<input class="searchtext" ng-model="mybillingfilter" placeholder="Filtrar contas" required title="Filtar contas" name="mybillingfilter" id="mybillingfilter" type="text">
+</div>
+<br>
+<div class="mybilling" ng-repeat="mybilling in (viewData=(mybilling | filterBy: ['pedido']: mybillingselector | filterBy: ['id','pedido','serial','vencimento','valor','nome','cpf','endereco','demonstrativo','status']: mybillingfilter)) track by $index" style="margin-left:0.5em;margin-top:1.5em;border:groove;min-height:7em">
+<div style="margin-right:0.3em;float:left;clear:both;width:100%">
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{mybilling.id}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="demonstrativo" required value="{{mybilling.demonstrativo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="billingloader"/>
+<button class="buttonToggle" style="background:rgba(255,255,255,0.0);border:0;float:right;clear:left" type="button" onclick="billingbridge(this);" name="billingview" id="billingview-{{mybilling.id}}" title="Ver boleto"><i class="fas fa-binoculars"></i></button>
+</form>
+<h4>{{mybilling.demonstrativo}} <h5 style="margin-right:1.1em;margin-top:-0.5em;float:right;clear:both;">Número: {{mybilling.id}}</h5><h5 class="{{mybilling.status|lowercase}}" style="margin-right:1.1em;margin-top:0.5em;float:right;clear:both;">{{mybilling.status}}</h5></h4>
+<h5 style="margin-left:0.1em">Vencimento: {{mybilling.vencimento}}</h5>
+<h5 style="margin-left:0.1em">Valor: R$ {{mybilling.valor}}</h5>
+</div>
+</div>
+
+</div>
+
+<div id="qc" style="position:relative;z-index:2;" class="off" ng-if="msgs[0].loaded=='messages'">
+<h5 id="qctitle">Messages</h5>
+<input ng-model="comframe" id="searchcoms" class="searchtext" style="margin-top:1.0em" placeholder="Filter messages">
+<br>
+<br>
+<div id="messages" style="margin-top:2.5em" ng-repeat="messages in msgs | filter:comframe | startFrom:currentPage*pageSize | limitTo:pageSize track by $index">
+<a class="qc{{messages.notificacao}}" id="messagebody" onclick="descriptbridge(this);"><b class="qc{{messages.notificacao}}" id="assunto">{{messages.remetente}}, {{messages.assunto}}</b></a>
+<div id="description" style="display:none">
+<form method="POST">
+<input style="display:none" type="hidden" contenteditable="false" name="id" required value="{{messages.id}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="pedido" required value="{{messages.pedido}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="resumo" required value="{{messages.resumo}}"/>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="messagesreader"/>
+<button class="delmsgbutton buttonToggle" type="submit" name="deletemsg" title="Deletar mensagem"><i class="far fa-trash-alt"></i></button>
+</form>
+<p id="comunicado" style="margin-top:-0.5em;margin-left:0.5em;margin-right:0.8em;font-weight: lighter!important">{{messages.conteudo}} {{messages.date}}</p>
+</div>
+<br>
+<br>
+</div>
+<br>
+<br>
+<div class="centering-2" style="clear: both">
+<button class="buttons" style="margin-right:0.5em;" ng-disabled="currentPage==0" ng-click="currentPage=currentPage-1"><</button>
+<label>{{currentPage+1}}/{{numberOfPages()}}</label>
+<button class="buttons" style="margin-left:0.5em;" ng-disabled="currentPage>=getData().length/pageSize-1" ng-click="currentPage=currentPage+1">></button>
+</div>
+</div>
+<div id="contact" class="off" ng-if="contact[0].loaded=='contact'">
+<form method="POST">
+<b>Subject: </b>
+<br>
+<select size="1" name="assunto" id="assunto" class="twinCategoria">
+<option ng-repeat="contact in contact | unique: 'active'" ng-if="contact.pedido!='0'" ng-selected="contact.pedido!='0'" value="Pedido">Order</option>
+<option selected value="Outro">Outros</option>
+</select>
+<div>
+<select size="1" name="targetselector" id="targetselector" class="twinCategoria">
+<option value="" disabled selected>Nº</option>
+<option ng-repeat="contact in contact" ng-if="contact.pedido!='0'" ng-selected="{{contact.pedido>contact.pedido}}" value="{{contact.pedido}}">{{contact.pedido}} {{contact.managed}}</option>
+</select>
+</div>
+<br>
+<br>
+<br>
+<div style="display: none">
+<input class="twinPublicacao" title="Assunto" placeholder="Especifique" type="text" name="targettext" value=""/>
+<input style="display: none" contenteditable="false" type="hidden" name="appendix">
+</div>
+<br>
+<br>
+<b>Resume: </b>
+<br>
+<select size="1" name="resumo" id="resumo" class="twinCategoria">
+<option value="Informação">Informação</option>
+<option value="Sugestão">Sugestão</option>
+<option value="Solicitação">Solicitação</option>
+<option value="Reclamação">Reclamação</option>
+</select>
+<br>
+<br>
+<br>
+<textarea class="twinContent" title="Mensagem" placeholder="Mensagem" name="message" required cols="163" rows="10" wrap="hard"></textarea>
+<br>
+<label style="font-size:0.8em;padding-left:0.0em" class="alert alert-info"><i class="fas fa-check"></i> Enviando mensagens você estará automaticamente informando o e-mail cadastrado para resposta.</label>
+<br>
+<input style="display: none" type="hidden" name="action" value="messagescreator">
+<input type="submit" class="buttons" value="Enviar"/>
+</form>
+</div>
+
+<div id="system" style="position:relative;z-index:2;" class="off" ng-if="system[0].loaded=='system'">
+<form method="POST">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button class="buttonToggle systemcommitbutton" id="systemcommit" type="submit" name="internalcommit"><i class="fas fa-check"></i></button>
+
+<div style="display:inline-block">
+<label>Nome da empresa</label>
+<br>
+<input name="empresa" id="empresa" class="internal" placeholder="Empresa" pattern=".{1,255}" required title="Empresa" value="{{system[0].empresa}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>CNPJ</label>
+<br>
+<input name="cnpj" id="cnpj" class="internal" placeholder="CNPJ" pattern=".{1,18}" required title="CNPJ" value="{{system[0].cnpj}}"/>
+</div>
+<br>
+<br>
+<label>Endereço</label>
+<br><br>
+<select size="1" name="logradouro" class="twinCategoria">
+<option ng-selected="system[0].LOG=='Rua'" value="Rua">Rua
+<option ng-selected="system[0].LOG=='Av.'" value="Av.">Avenida
+<option ng-selected="system[0].LOG=='Est.'" value="Est.">Estrada
+<option ng-selected="system[0].LOG=='Pca.'" value="Pca.">Praça
+<option ng-selected="system[0].LOG=='Tr.'" value="Tr.">Travessa
+<option ng-selected="system[0].LOG=='Rod.'" value="Rod.">Rodovia
+<option ng-selected="system[0].LOG=='Quadra'" value="Quadra">Quadra
+<option ng-selected="system[0].LOG=='Lote'" value="Lote">Lote
+</select>
+<input class="twinCategoria" placeholder="Logradouro" name="endereco" id="endereco" type="text" value="{{system[0].END}}" size="40"><br><br>
+<input maxlength="6" class="twinCategoria" placeholder="Nº" name="numero" id="numero" type="text" value="{{system[0].NUMERO}}" size="7" pattern=".{1,6}" title="No mínimo 1 Caracter numérico">
+<input class="twinCategoria" placeholder="Complemento" name="complemento" id="complemento" type="text" value="{{system[0].COMP}}" size="27">
+<input class="twinCategoria" placeholder="CEP" name="cep" id="cep" type="text" value="{{system[0].CEP}}" size="9" pattern=".{9,9}" title="8 Caracteres numéricos"><br><br>
+<input class="twinCategoria" placeholder="Bairro" name="bairro" id="bairro" type="text" value="{{system[0].BAIRRO}}" size="15">
+<input class="twinCategoria" placeholder="Cidade" name="cidade" id="cidade" type="text" value="{{system[0].CIDADE}}" size="15">
+<select size="1" name="estado" class="twinCategoria">
+<option ng-selected="system[0].ESTADO=='AC'" value="AC">AC
+<option ng-selected="system[0].ESTADO=='AL'" value="AL">AL
+<option ng-selected="system[0].ESTADO=='AP'" value="AP">AP
+<option ng-selected="system[0].ESTADO=='AM'" value="AM">AM
+<option ng-selected="system[0].ESTADO=='BA'" value="BA">BA
+<option ng-selected="system[0].ESTADO=='CE'" value="CE">CE
+<option ng-selected="system[0].ESTADO=='DF'" value="DF">DF
+<option ng-selected="system[0].ESTADO=='ES'" value="ES">ES
+<option ng-selected="system[0].ESTADO=='GO'" value="GO">GO
+<option ng-selected="system[0].ESTADO=='MA'" value="MA">MA
+<option ng-selected="system[0].ESTADO=='MT'" value="MT">MT
+<option ng-selected="system[0].ESTADO=='MS'" value="MS">MS
+<option ng-selected="system[0].ESTADO=='MG'" value="MG">MG
+<option ng-selected="system[0].ESTADO=='PA'" value="PA">PA
+<option ng-selected="system[0].ESTADO=='PB'" value="PB">PB
+<option ng-selected="system[0].ESTADO=='PR'" value="PR">PR
+<option ng-selected="system[0].ESTADO=='PE'" value="PE">PE
+<option ng-selected="system[0].ESTADO=='PI'" value="PI">PI
+<option ng-selected="system[0].ESTADO=='RJ'" value="PI">RJ
+<option ng-selected="system[0].ESTADO=='RN'" value="RN">RN
+<option ng-selected="system[0].ESTADO=='RS'" value="RS">RS
+<option ng-selected="system[0].ESTADO=='RO'" value="RO">RO
+<option ng-selected="system[0].ESTADO=='RR'" value="RR">RR
+<option ng-selected="system[0].ESTADO=='SC'" value="SC">SC
+<option ng-selected="system[0].ESTADO=='SP'" value="SP">SP
+<option ng-selected="system[0].ESTADO=='SE'" value="SE">SE
+<option ng-selected="system[0].ESTADO=='TO'" value="TO">TO
+</select>
+<br>
+<br>
+<div style="display:inline-block">
+<label>E-mail</label>
+<br>
+<input name="email" id="email" class="internal" placeholder="E-mail" pattern=".{1,100}" required title="E-mail" value="{{system[0].email}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Agencia Bancaria</label>
+<br>
+<input name="agencia" id="agencia" class="internal" placeholder="Agencia" pattern=".{1,4}" required title="Agencia" value="{{system[0].agencia}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Numero da conta</label>
+<br>
+<input name="conta" id="conta" class="internal" placeholder="Conta" pattern=".{1,3}" required title="Conta" value="{{system[0].conta}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Digito verificador</label>
+<br>
+<input name="digito" id="digito" class="internal" placeholder="Digito" pattern=".{1,1}" required title="Digito" value="{{system[0].digito}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Cedente</label>
+<br>
+<input name="cedente" id="cedente" class="internal" placeholder="Cedente" pattern=".{1,5}" required title="Cedente" value="{{system[0].cedente}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Registro de conta Caixa</label>
+<br>
+<select size="1" name="registro" class="twinCategoria">
+<option ng-selected="system[0].registro=='CR'" value="CR">CR
+<option ng-selected="system[0].registro=='SR'" value="SR">SR
+</select>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Taxa do boleto</label>
+<br>
+<input name="taxa" id="taxa" class="internal" placeholder="Taxa do boleto" pattern=".{1,9}" required title="Taxa do boleto" value="{{system[0].taxa}}"/>
+</div>
+<br>
+<br>
+<div style="display:inline-block">
+<label>Senha de criptografia do sistema</label>
+<br>
+<input name="senha" id="senha" class="internal" placeholder="Senha" pattern=".{1,14}" required title="Senha" value="{{system[0].senha}}"/>
+</div>
+<br>
+<br>
+<input style="display:none" type="hidden" contenteditable="false" name="action" value="systemconfig"/>
+<input style="display:none" type="hidden" contenteditable="false" name="fulladdress"/>
+</form>
+</div>
+
+<div id="notifications" style="position:relative;z-index:2;" class="off" ng-if="notifications[0].loaded=='notifications'">
+<label>Notifications</label>
+</div>
+
+<br>
+<br>
+
+<div class="app centering" style="display:block;">
+<div id="pageload" class="blink centering">
+<b class="event listening">Loading</b>
+</div>
+</div>
+
+</article>
+
+<footer style="bottom: 0;position: relative;">
+
+<div class="centering">
+
+</div>
+
+<div id="corpinfo" style="width: 100%;float:left;clear:right;display:none">
+<div id="company" class="centering_2" style="text-align: center;margin-top:3.0em !important;margin-left: 1.0em !important;">
+<sup><a href="./privacy" class="companyjobs" style="display:inline-block;text-decoration:none">Terms of use and privacy.</a></sup>
+<br>
+<sup>Developed by Bruno Henrique Ferreira de Oliveira, Copyright 2019.</sup>
+<br>
+<a href="https://github.com/brunonimos" class="companyicons" style="display:inline-block;text-decoration:none"><i class="companyicons fab fa-github"></i></a>
+<!--
+<a href="https://br.linkedin.com/in/brunonimos" class="companyicons" style="display:inline-block;text-decoration:none"><i class="companyicons fab fa-linkedin"></i></a>
+<a href="https://www.instagram.com/brunonimos_works/" class="companyicons" style="display:inline-block;text-decoration:none"><i class="fab fa-instagram"></i></a>
+<a href="https://www.youtube.com/channel/UCst81omPyq4uae3Sm2bJvlw" class="companyicons" style="display:inline-block;text-decoration:none"><i class="fab fa-youtube"></i></a>
+<button onclick="alert('mail\@mail.com');" class="companyicons" style="display:inline-block;background: rgba(255,255,255,0.0);border:0em"><i class="companyicons fas fa-envelope"></i></button>
+-->
+</div>
+<br>
+<br>
+</div>
+
+<!--
+<div class="centering">
+<b style="text-align: center">Copyright 2019 Bruno Henrique Ferreira de Oliveira.</b>
+<em style="font-size:0.5em !important;text-align: center">Copyright material available on this website is licensed under the MIT or GNU License. To view a copy of this licence, visit https://opensource.org/licenses</em><br><br>
+</div>
+-->
+
+</footer>
+
+</div>
+
+<script src="js/filter.js"></script>
+<script src="js/sessao.js"></script>
+<script src="js/loginout.js"></script>
+<script src="js/accountscommit.js"></script>
+<script src="js/orderscommit.js"></script>
+<script src="js/description.js"></script>
+<script src="js/router.js"></script>
+<script src="js/billingview.js"></script>
+<script src="js/banking.js"></script>
+
+</body>
+</html>
